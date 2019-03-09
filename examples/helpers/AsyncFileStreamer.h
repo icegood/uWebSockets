@@ -1,4 +1,5 @@
 #include <experimental/filesystem>
+#include "App.h"
 
 struct AsyncFileStreamer {
 
@@ -38,7 +39,8 @@ struct AsyncFileStreamer {
     static void streamFile(uWS::HttpResponse<SSL> *res, AsyncFileReader *asyncFileReader) {
         /* Peek from cache */
         std::string_view chunk = asyncFileReader->peek(res->getWriteOffset());
-        if (!chunk.length() || res->tryEnd(chunk, asyncFileReader->getFileSize())) {
+        std::pair<bool, bool> pair_res = res->tryEnd(chunk, asyncFileReader->getFileSize());
+        if (!chunk.length() || (pair_res.first && pair_res.second)) {
             /* Request new chunk */
             // todo: we need to abort this callback if peer closed!
             // this also means Loop::defer needs to support aborting (functions should embedd an atomic boolean abort or something)

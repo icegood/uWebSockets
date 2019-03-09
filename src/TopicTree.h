@@ -66,7 +66,7 @@ private:
     std::set<Node *> pubNodes;
 
     /* Settings */
-    bool mergePublishedMessages = false;
+    //bool mergePublishedMessages = false;
 
     /* Where we store prepared messages to send */
     //std::string preparedMessage;
@@ -97,7 +97,8 @@ public:
                     AsyncSocket<false> *asyncSocket = (AsyncSocket<false> *) ws; // assumes non-SSL for now
 
                     /* Writing optionally raw data */
-                    auto [written, failed] = asyncSocket->write(topicNode->sharedMessage.data(), topicNode->sharedMessage.length(), true, 0);
+                    //auto [written, failed] =
+                    asyncSocket->write(topicNode->sharedMessage.data(), topicNode->sharedMessage.length(), true, 0);
 
                     /* We should probably reset timeout for a WebSocket getting something sent */
 

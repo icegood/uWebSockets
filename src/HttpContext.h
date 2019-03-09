@@ -253,7 +253,8 @@ private:
             }
 
             /* Drain any socket buffer, this might empty our backpressure and thus finish the request */
-            auto [written, failed] = asyncSocket->write(nullptr, 0, true, 0);
+            //auto [written, failed] =
+            asyncSocket->write(nullptr, 0, true, 0);
 
             /* Expect another writable event, or another request within the timeout */
             asyncSocket->timeout(HTTP_IDLE_TIMEOUT_S);

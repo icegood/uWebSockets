@@ -4,6 +4,7 @@
 #include <sstream>
 #include <iostream>
 #include <future>
+#include "App.h"
 
 /* This is just a very simple and inefficient demo of async responses,
  * please do roll your own variant or use a database or Node.js's async
@@ -45,7 +46,7 @@ public:
 
         // get loop for thread
 
-        loop = uWS::Loop::defaultLoop();
+        loop = uWS::Loop::get();
     }
 
     /* Returns any data already cached for this offset */
